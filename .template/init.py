@@ -16,10 +16,10 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 REWRITE_FILES = [
     ".github/workflows/publish.yml",
     ".github/dependabot.yml",
+    ".template/readme_template.md",
     "src/${project_name}/__init__.py",
     "tests/__init__.py",
     "pyproject.toml",
-    "README.md",
 ]
 
 RENAME_PATHS = ["src/${project_name}"]
@@ -62,6 +62,9 @@ def main(replacements: Replacements) -> None:
     print("\nReplacing placeholders in files...")
     for file in REWRITE_FILES:
         rewrite_file(Path(file), replacements)
+
+    print("\nReplacing README.md...")
+    replace_file(Path(".template/readme_template.md"), Path("README.md"))
 
     print("\nUpdating path names...")
     for path in RENAME_PATHS:
@@ -140,6 +143,14 @@ def rewrite_file(path: Path, replacements: Replacements) -> None:
 
     except Exception as e:
         print(f"  Error processing {path}: {e}")
+
+
+def replace_file(source_path: Path, target_path: Path) -> None:
+    """Replace `target_path` with the content of `source_path`, then delete `source_path`."""
+    source_content = source_path.read_text(encoding="utf-8")
+    target_path.write_text(source_content, encoding="utf-8")
+    source_path.unlink()  # Remove the source file after copying
+    print(f"Replaced {target_path} with content from {source_path}")
 
 
 def rename_path(path: Path, replacements: Replacements) -> None:

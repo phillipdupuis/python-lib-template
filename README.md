@@ -1,64 +1,23 @@
-# ${project_name}
-
-[![PyPI version](https://badge.fury.io/py/${project_name}.svg)](https://badge.fury.io/py/${project_name})
-[![Test](https://github.com/${github_username}/${project_name}/actions/workflows/test.yml/badge.svg)](https://github.com/${github_username}/${project_name}/actions/workflows/test.yml)
-[![Lint](https://github.com/${github_username}/${project_name}/actions/workflows/lint.yml/badge.svg)](https://github.com/${github_username}/${project_name}/actions/workflows/lint.yml)
-[![Coverage Status](https://codecov.io/github/${github_username}/${project_name}/branch/main/graph/badge.svg)](https://codecov.io/github/${github_username}/${project_name})
-
-${description}
-
-## Installation
-
-```bash
-pip install ${project_name}
-```
-
-With [uv](https://github.com/astral-sh/uv):
-
-```bash
-uv pip install ${project_name}
-```
+# Phillip Dupuis' Python Library Template
 
 ## Usage
 
-```python
-import ${project_name}
+### 1: Start a new project which uses this repository as a template
 
-# Add usage examples here
-```
-
-## Development
-
-This project uses modern Python tooling:
-
-- [uv](https://github.com/astral-sh/uv) for dependency management
-- [pytest](https://docs.pytest.org/) for testing
-- [ruff](https://github.com/astral-sh/ruff) for linting and formatting
-
-### Setup
+### 2: Clone the repository and run the setup script using the system's Python3 interpreter
 
 ```bash
-# Clone the repository
-git clone https://github.com/${github_username}/${project_name}.git
-cd ${project_name}
+$ python3 ./.template/init.py --help
+usage: init.py [-h] -n NAME -a AUTHOR -e EMAIL -g GITHUB [-d DESCRIPTION]
 
-# Install development dependencies
-uv pip install -e ".[dev]"
+Replace placeholders in a Python library template
+
+options:
+  -h, --help            show this help message and exit
+  -n, --name NAME       Library name (snake_case recommended)
+  -a, --author AUTHOR   Author name
+  -e, --email EMAIL     Author email
+  -g, --github GITHUB   GitHub username
+  -d, --description DESCRIPTION
+                        Short package description
 ```
-
-### Running Tests
-
-```bash
-pytest
-```
-
-### Code Quality
-
-```bash
-ruff check .
-ruff format .
-```
-
-## License
-
-[GNU General Public License v3.0](LICENSE)
